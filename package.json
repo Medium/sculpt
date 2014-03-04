@@ -1,0 +1,17 @@
+{
+  "name": "sculpt",
+  "version": "0.1.0",
+  "description": "Manipulate streams.",
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "engineStrict": true,
+  "scripts": {
+    "test": "jshint lib/* test/* index.js && mocha --reporter spec --check-leaks"
+  },
+  "devDependencies": {
+    "mocha": "~1.17.1",
+    "jshint": "~2.4.4"
+  }
+}
