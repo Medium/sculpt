@@ -11,6 +11,10 @@ buffers, but that is not the case when streams operate in object mode.
 
 **Methods**
 
+*Builders*
+* [Map](#map)
+* [Filter](#filter)
+
 *Strings*
 
 * [Append](#append)
@@ -19,8 +23,6 @@ buffers, but that is not the case when streams operate in object mode.
 
 *Objects*
 
-* [Map](#map)
-* [Filter](#filter)
 * [Join](#join)
 * [Split](#split)
 
@@ -32,6 +34,78 @@ buffers, but that is not the case when streams operate in object mode.
 *Miscellaneous*
 
 * [Pipes](#pipes)
+
+### Map
+
+**Arguments**
+
+* callback: A function to apply to each chunk. The functions result is injected into the stream
+in place of the chunk.
+
+```javascript
+var stream = sculpt.map(function (chunk) {
+  return chunk + chunk
+})
+
+stream.pipe(process.stdout)
+stream.write('hello')
+
+// hellohello
+```
+
+Map can also operate asynchronously. To make the stream async, pass a second argument
+(a done callback) and call `.async()`.
+
+```javascript
+var stream = sculpt.map(function (chunk, done) {
+  requestRemoteData(chunk, function (err, data) {
+    done(err, chunk + data)
+  })
+}).async()
+
+stream.pipe(process.stdout)
+stream.write('hello')
+
+// 'hello some remote data...'
+```
+
+
+### Filter
+
+**Arguments**
+ * callback: A truth test to apply to each chunk. If the callback returns false, the chunk
+ is removed from the stream.
+
+```javascript
+var stream = sculpt.filter(function (chunk) {
+  return chunk.toString().length >= 5
+})
+
+stream.on('data', console.log.bind(console))
+stream.write('hi')
+stream.write('hello')
+stream.write('goodbye')
+
+// 'hellogoodbye'
+```
+
+Filter can also operate asynchronously. To make the stream async, pass a second argument
+(a done callback) and call `.async()`.
+
+```javascript
+var stream = sculpt.filter(function (chunk, done) {
+  requestRemoteValidation(chunk, function (err, valid) {
+    done(err, !! valid)
+  })
+}).async()
+
+stream.on('data', console.log.bind(console))
+stream.write('hi')
+stream.write('hello')
+stream.write('goodbye')
+
+// 'hellogoodbye'
+```
 
 ### Append
 
@@ -82,43 +156,6 @@ stream.write('world ')
 stream.write('goodbye!')
 
 // 'hello? world goodbye?'
-```
-
-### Map
-
-**Arguments**
-
-* callback: A function to apply to each chunk. The functions result is injected into the stream
-in place of the chunk.
-
-```javascript
-var stream = sculpt.map(function (chunk) {
-  return chunk + chunk
-})
-
-stream.pipe(process.stdout)
-stream.write('hello')
-
-// hellohello
-```
-
-### Filter
-
-**Arguments**
- * callback: A truth test to apply to each chunk. If the callback returns false, the chunk
- is removed from the stream.
-
-```javascript
-var stream = sculpt.filter(function (chunk) {
-  return chunk.toString().length >= 5
-})
-
-stream.on('data', console.log.bind(console))
-stream.write('hi')
-stream.write('hello')
-stream.write('goodbye')
-
-// 'hellogoodbye'
 ```
 
 ### Join
