@@ -1,12 +1,12 @@
 // Copyright 2014. A Medium Corporation
 
 var assert = require('assert')
-var Collector = require('./helpers/Collector')
+var collect = require('./helpers/collect')
 var prepend = require('../').prepend
 
 describe('Prepend', function () {
   it('Should add a prefix', function (done) {
-    var collector = new Collector()
+    var collector = collect()
     var stream = prepend('Why would you lie about ')
 
     stream.pipe(collector)

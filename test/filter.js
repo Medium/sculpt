@@ -1,7 +1,7 @@
 // Copyright 2014. A Medium Corporation
 
 var assert = require('assert')
-var Collector = require('./helpers/Collector')
+var collect = require('./helpers/collect')
 var filter = require('../').filter
 
 // Remove all references to New Jersey
@@ -11,7 +11,7 @@ function noJersey(item) {
 
 describe('Filter', function () {
   it('Should allow objects that pass', function (done) {
-    var collector = new Collector()
+    var collector = collect()
     var stream = filter(noJersey)
 
     stream.pipe(collector)
@@ -25,7 +25,7 @@ describe('Filter', function () {
   })
 
   it('Should allow objects that pass async', function (done) {
-    var collector = new Collector()
+    var collector = collect()
     var stream = filter(function (chunk, cb) {
       setImmediate(function () {
         cb(null, noJersey(chunk))
@@ -43,7 +43,7 @@ describe('Filter', function () {
   })
 
   it('Should block objects that do not pass', function (done) {
-    var collector = new Collector()
+    var collector = collect()
     var stream = filter(noJersey)
 
     stream.pipe(collector)
@@ -57,7 +57,7 @@ describe('Filter', function () {
   })
 
   it('Should block objects that do not pass async', function (done) {
-    var collector = new Collector()
+    var collector = collect()
     var stream = filter(function (chunk, cb) {
       setImmediate(function () {
         cb(null, noJersey(chunk))

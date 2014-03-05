@@ -1,12 +1,12 @@
 // Copyright 2014. A Medium Corporation
 
 var assert = require('assert')
-var Collector = require('./helpers/Collector')
+var collect = require('./helpers/collect')
 var tap = require('../').tap
 
 describe('Tap', function () {
   it('Should call a side effect function without changing data', function (done) {
-    var collector = new Collector()
+    var collector = collect()
     var hannahs = 0
     var stream = tap(function (line) {
       if (line.indexOf('Hannah') > -1) {

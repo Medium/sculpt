@@ -1,12 +1,12 @@
 // Copyright 2014. A Medium Corporation
 
 var assert = require('assert')
-var Collector = require('./helpers/Collector')
+var collect = require('./helpers/collect')
 var append = require('../').append
 
 describe('Append', function () {
   it('Should add a suffix', function (done) {
-    var collector = new Collector()
+    var collector = collect()
     var stream = append('?')
 
     stream.pipe(collector)

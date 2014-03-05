@@ -1,12 +1,12 @@
 // Copyright 2014. A Medium Corporation
 
 var assert = require('assert')
-var Collector = require('./helpers/Collector')
+var collect = require('./helpers/collect')
 var map = require('../').map
 
 describe('Map', function () {
   it('Should apply a mapper', function (done) {
-    var collector = new Collector()
+    var collector = collect()
     var stream = map(function (line) {
       return line.toUpperCase()
     })
@@ -27,7 +27,7 @@ describe('Map', function () {
   })
   
   it('Should apply an async mapper', function (done) {
-    var collector = new Collector()
+    var collector = collect()
     var stream = map(function (line, cb) {
       setImmediate(function () {
         cb(null, line.toUpperCase())

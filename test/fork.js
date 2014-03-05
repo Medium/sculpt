@@ -1,13 +1,13 @@
 // Copyright 2014. A Medium Corporation
 
 var assert = require('assert')
-var Collector = require('./helpers/Collector')
+var collect = require('./helpers/collect')
 var fork = require('../').fork
 
 describe('Fork', function () {
   it('Should fork to another writable stream', function (done) {
-    var collector = new Collector()
-    var forkedWritable = new Collector()
+    var collector = collect()
+    var forkedWritable = collect()
     var stream = fork(forkedWritable)
 
     stream.pipe(collector)
@@ -24,7 +24,7 @@ describe('Fork', function () {
   })
 
   it('Should bubble errors', function (done) {
-    var stream = fork(new Collector())
+    var stream = fork(collect())
     stream.on('error', function (err) {
       assert.equal(err.message, 'write after end')
       done()

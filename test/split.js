@@ -1,12 +1,12 @@
 // Copyright 2014. A Medium Corporation
 
 var assert = require('assert')
-var Collector = require('./helpers/Collector')
+var collect = require('./helpers/collect')
 var split = require('../').split
 
 describe('Split', function () {
   it('Should split on a string', function (done) {
-    var collector = new Collector()
+    var collector = collect()
     var stream = split('\n')
 
     stream.pipe(collector)
@@ -23,7 +23,7 @@ describe('Split', function () {
   })
 
   it('Should split on a regex', function (done) {
-    var collector = new Collector()
+    var collector = collect()
     var stream = split(/,\s+/)
 
     stream.pipe(collector)

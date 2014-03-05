@@ -1,12 +1,12 @@
 // Copyright 2014. A Medium Corporation
 
 var assert = require('assert')
-var Collector = require('./helpers/Collector')
+var collect = require('./helpers/collect')
 var join = require('../').join
 
 describe('Join', function () {
   it('Should join with a separator', function (done) {
-    var collector = new Collector()
+    var collector = collect()
     var stream = join(' about ')
 
     stream.pipe(collector)
