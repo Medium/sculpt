@@ -1,13 +1,12 @@
 // Copyright 2014. A Medium Corporation
 
 /**
-* @file A simple writeable stream that collects objects from
-* a readable stream.
-*/
+ * @file A simple transform stream that just collects incoming objects.
+ */
 var sculpt = require('../../index')
 
 /**
- * A simple transform stream that just collects incoming objects.
+ * Create a collector stream.
  * @return {stream.Transform}
  */
 module.exports = function () {
