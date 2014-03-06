@@ -1,7 +1,7 @@
 {
   "name": "sculpt",
   "version": "0.1.0",
-  "description": "Manipulate streams.",
+  "description": "Generate Node 0.10-friendly transform streams to manipulate other streams.",
   "main": "index.js",
   "engines": {
     "node": ">=0.10.0"
@@ -13,5 +13,21 @@
   "devDependencies": {
     "mocha": "~1.17.1",
     "jshint": "~2.4.4"
-  }
+  },
+  "author": "Evan Solomon <evan.solomon@medium.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/Obvious/sculpt",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Obvious/sculpt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Obvious/sculpt/issues"
+  },
+  "keywords": [
+    "stream",
+    "streams2",
+    "transform",
+    "objectMode"
+  ]
 }

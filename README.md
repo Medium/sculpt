@@ -1,7 +1,7 @@
 # Sculpt
 
-A collection of Node.js [transform streams](http://nodejs.org/api/stream.html#stream_class_stream_transform)
-for simple data manipulation.
+A collection of Node.js [transform stream](http://nodejs.org/api/stream.html#stream_class_stream_transform)
+utilities for simple data manipulation.
 
 ## API
 
