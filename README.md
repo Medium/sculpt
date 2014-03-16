@@ -69,6 +69,26 @@ stream.write('hello')
 // 'hello some remote data...'
 ```
 
+Map streams can also operate in multi mode, which lets them push multiple unique values
+in a single callback. Callbacks in multi mode **must** return arrays, and each item
+will be pushed individually. To create a map steam in multi mode call `.multi()`.
+
+This is most useful when you're consuming the output with another stream that depends on
+meaningful items in each push. This is how the split stream is implemented.
+
+```javascript
+var i = 0
+var stream = sculpt.map(function (chunk) {
+  i++
+  return [i.toString(), chunk]
+}).multi()
+
+stream.pipe(process.stdout)
+stream.write('hello')
+
+// 1hello
+```
+
 
 ### Filter
 
