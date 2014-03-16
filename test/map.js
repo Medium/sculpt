@@ -73,4 +73,31 @@ describe('Map', function () {
     stream.write('Why would you lie about anything at all?')
     stream.end()
   })
+
+  it('Should apply an async multi mapper', function (done) {
+    var collector = collect()
+    var i = 0
+    var stream = map(function (line, cb) {
+      setImmediate(function () {
+        i++
+        cb(null, [i, line])
+      })
+    }).async().multi()
+
+    stream.pipe(collector)
+    stream.on('error', done)
+    stream.on('end', function () {
+      assert.deepEqual([
+        1,
+        'Why would you lie about how much coal you have?',
+        2,
+        'Why would you lie about anything at all?'
+      ], collector.getObjects())
+      done()
+    })
+
+    stream.write('Why would you lie about how much coal you have?')
+    stream.write('Why would you lie about anything at all?')
+    stream.end()
+  })
 })
