@@ -25,7 +25,7 @@ describe('Map', function () {
     stream.write('Why would you lie about anything at all?')
     stream.end()
   })
-  
+
   it('Should apply an async mapper', function (done) {
     var collector = collect()
     var stream = map(function (line, cb) {

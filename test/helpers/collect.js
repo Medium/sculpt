@@ -10,12 +10,12 @@ var sculpt = require('../../index')
  * @return {stream.Transform}
  */
 module.exports = function () {
-	var objects = []
-	var collector = sculpt.tap(objects.push.bind(objects))
+  var objects = []
+  var collector = sculpt.tap(objects.push.bind(objects))
 
-	collector.getObjects = function () {
-		return objects
-	}
+  collector.getObjects = function () {
+    return objects
+  }
 
-	return collector
+  return collector
 }

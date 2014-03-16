@@ -8,11 +8,15 @@
   },
   "engineStrict": true,
   "scripts": {
-    "test": "jshint lib/* test/* index.js && mocha --reporter spec --check-leaks"
+    "jshint": "jshint lib/* test/* index.js",
+    "jscs": "jscs lib/* test/* index.js",
+    "mocha": "mocha --reporter spec --check-leaks",
+    "test": "npm run jshint && npm run jscs && npm run mocha"
   },
   "devDependencies": {
     "mocha": "~1.17.1",
-    "jshint": "~2.4.4"
+    "jshint": "~2.4.4",
+    "jscs": "~1.3.0"
   },
   "author": "Evan Solomon <evan.solomon@medium.com>",
   "license": "MIT",
