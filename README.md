@@ -5,6 +5,8 @@
 A collection of Node.js [transform stream](http://nodejs.org/api/stream.html#stream_class_stream_transform)
 utilities for simple data manipulation.
 
+Install with `npm install sculpt --save`.
+
 ## API
 
 All of Sculpt's streams operate in `objectMode`, so be careful that you know what data types are
