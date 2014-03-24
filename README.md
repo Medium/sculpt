@@ -24,11 +24,12 @@ buffers, but that is not the case when streams operate in object mode.
 * [Append](#append)
 * [Prepend](#prepend)
 * [Replace](#replace)
+* [Split](#split)
+* [Byte Length](#byte-length)
 
 *Objects*
 
 * [Join](#join)
-* [Split](#split)
 
 *Control Flow*
 
@@ -223,6 +224,25 @@ stream.write('hi|bye|foo|bar')
 // '2 bye'
 // '3 foo'
 // '4 bar'
+```
+
+### Byte Length
+**Arguments**
+
+* length: Length in bytes for each output chunk
+
+Each output chunk will be a buffer of `length` bytes, except the last chunk, which will be however many bytes are left over.
+
+```javascript
+var stream = sculpt.byteLength(5)
+stream.on('data', function (chunk) {
+  console.log(chunk.toString())
+})
+stream.end('abcdefghijk')
+
+// 'abcde'
+// 'fghij'
+// 'k'
 ```
 
 ### Fork
