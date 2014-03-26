@@ -11,7 +11,7 @@ describe('Append', function () {
 
     stream.pipe(collector)
     stream.on('error', done)
-    stream.on('end', function () {
+    collector.on('end', function () {
       assert.deepEqual([
         'Don\'t you know that it\'s insane?',
         'Don\'t you want to get out of Cap Code, out of Cape Code tonight?'

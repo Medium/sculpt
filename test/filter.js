@@ -16,7 +16,7 @@ describe('Filter', function () {
 
     stream.pipe(collector)
     stream.on('error', done)
-    stream.on('end', function () {
+    collector.on('end', function () {
       assert.equal('Out of Cape Cod tonight', collector.getObjects().pop())
       done()
     })
@@ -34,7 +34,7 @@ describe('Filter', function () {
 
     stream.pipe(collector)
     stream.on('error', done)
-    stream.on('end', function () {
+    collector.on('end', function () {
       assert.equal('Out of Cape Cod tonight', collector.getObjects().pop())
       done()
     })
@@ -48,7 +48,7 @@ describe('Filter', function () {
 
     stream.pipe(collector)
     stream.on('error', done)
-    stream.on('end', function () {
+    collector.on('end', function () {
       assert.deepEqual([], collector.getObjects())
       done()
     })
@@ -66,7 +66,7 @@ describe('Filter', function () {
 
     stream.pipe(collector)
     stream.on('error', done)
-    stream.on('end', function () {
+    collector.on('end', function () {
       assert.deepEqual([], collector.getObjects())
       done()
     })

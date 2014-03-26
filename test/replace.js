@@ -11,7 +11,7 @@ describe('Replace', function () {
 
     stream.pipe(collector)
     stream.on('error', done)
-    stream.on('end', function () {
+    collector.on('end', function () {
       assert.equal('Baby baby baby baby it\'s a light on', collector.getObjects().pop())
       done()
     })
@@ -25,7 +25,7 @@ describe('Replace', function () {
 
     stream.pipe(collector)
     stream.on('error', done)
-    stream.on('end', function () {
+    collector.on('end', function () {
       assert.equal('Baby it\'s a light on', collector.getObjects().pop())
       done()
     })
@@ -42,7 +42,7 @@ describe('Replace', function () {
 
     stream.pipe(collector)
     stream.on('error', done)
-    stream.on('end', function () {
+    collector.on('end', function () {
       assert.equal('Baby baby baby baby RIDE on', collector.getObjects().pop())
       done()
     })
