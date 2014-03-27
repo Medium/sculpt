@@ -1,0 +1,21 @@
+#! /usr/bin/env node
+
+var fs = require('fs')
+var path = require('path')
+
+var libPath = path.resolve(__dirname, '../lib')
+var testPath = path.resolve(__dirname, '../test')
+
+var libFiles = fs.readdirSync(libPath)
+var testFiles = fs.readdirSync(testPath)
+
+console.log('Ensuring all lib files have tests.')
+
+libFiles.forEach(function (libFile) {
+  if (testFiles.indexOf(libFile) > -1) return
+  console.error('Missing tests for: %s', libFile)
+  console.error('All lib files should have matching test files.')
+  process.exit(1)
+})
+
+console.log('All lib files have tests. Good.')

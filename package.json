@@ -8,10 +8,11 @@
   },
   "engineStrict": true,
   "scripts": {
+    "ensure-tests": "bin/ensure-tests",
     "jshint": "jshint lib/* test/* index.js",
     "jscs": "jscs lib/* test/* index.js",
     "mocha": "mocha --reporter spec --check-leaks",
-    "test": "npm run jshint && npm run jscs && npm run mocha"
+    "test": "npm run jshint && npm run jscs && npm run ensure-tests && npm run mocha"
   },
   "devDependencies": {
     "mocha": "~1.17.1",
