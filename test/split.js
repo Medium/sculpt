@@ -11,7 +11,7 @@ describe('Split', function () {
 
     stream.pipe(collector)
     stream.on('error', done)
-    stream.on('end', function () {
+    collector.on('end', function () {
       assert.deepEqual([
         'I took your counsel and came to ruin',
         'Leave me to myself, leave me to myself'
@@ -28,7 +28,7 @@ describe('Split', function () {
 
     stream.pipe(collector)
     stream.on('error', done)
-    stream.on('end', function () {
+    collector.on('end', function () {
       assert.deepEqual([
         'Looked up full of fear',
         'trapped beneath the chandelier'

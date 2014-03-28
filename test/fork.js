@@ -12,7 +12,7 @@ describe('Fork', function () {
 
     stream.pipe(collector)
     stream.on('error', done)
-    stream.on('end', function () {
+    collector.on('end', function () {
       assert.deepEqual(['The Holy Roman Empire', 'roots for you'], forkedWritable.getObjects())
       assert.deepEqual(['The Holy Roman Empire', 'roots for you'], collector.getObjects())
       done()

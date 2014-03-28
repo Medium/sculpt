@@ -16,7 +16,7 @@ describe('Tap', function () {
 
     stream.pipe(collector)
     stream.on('error', done)
-    stream.on('end', function () {
+    collector.on('end', function () {
       assert.equal(hannahs, 2)
       done()
     })

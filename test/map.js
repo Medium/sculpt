@@ -13,7 +13,7 @@ describe('Map', function () {
 
     stream.pipe(collector)
     stream.on('error', done)
-    stream.on('end', function () {
+    collector.on('end', function () {
       assert.deepEqual([
         'WHY WOULD YOU LIE ABOUT HOW MUCH COAL YOU HAVE?',
         'WHY WOULD YOU LIE ABOUT ANYTHING AT ALL?'
@@ -36,7 +36,7 @@ describe('Map', function () {
 
     stream.pipe(collector)
     stream.on('error', done)
-    stream.on('end', function () {
+    collector.on('end', function () {
       assert.deepEqual([
         'WHY WOULD YOU LIE ABOUT HOW MUCH COAL YOU HAVE?',
         'WHY WOULD YOU LIE ABOUT ANYTHING AT ALL?'
@@ -59,7 +59,7 @@ describe('Map', function () {
 
     stream.pipe(collector)
     stream.on('error', done)
-    stream.on('end', function () {
+    collector.on('end', function () {
       assert.deepEqual([
         1,
         'Why would you lie about how much coal you have?',
@@ -86,7 +86,7 @@ describe('Map', function () {
 
     stream.pipe(collector)
     stream.on('error', done)
-    stream.on('end', function () {
+    collector.on('end', function () {
       assert.deepEqual([
         1,
         'Why would you lie about how much coal you have?',

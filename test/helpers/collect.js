@@ -13,6 +13,9 @@ module.exports = function () {
   var objects = []
   var collector = sculpt.tap(objects.push.bind(objects))
 
+  // Make sure it consumes the incoming data
+  collector.on('data', function () {})
+
   collector.getObjects = function () {
     return objects
   }

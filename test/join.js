@@ -11,7 +11,7 @@ describe('Join', function () {
 
     stream.pipe(collector)
     stream.on('error', done)
-    stream.on('end', function () {
+    collector.on('end', function () {
       assert.deepEqual([
         'Why would you lie about how much coal you have?',
         'Why would you lie about something dumb like that?'
