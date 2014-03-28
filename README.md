@@ -1,6 +1,6 @@
 # Sculpt
 
-[![Build Status](https://secure.travis-ci.org/Obvious/sculpt.png?branch=master)](http://travis-ci.org/Obvious/sculpt)
+[![Build Status](https://secure.travis-ci.org/Medium/sculpt.png?branch=master)](http://travis-ci.org/Medium/sculpt)
 
 A collection of Node.js [transform stream](http://nodejs.org/api/stream.html#stream_class_stream_transform)
 utilities for simple data manipulation.

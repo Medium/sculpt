@@ -1,6 +1,6 @@
 # Contributing
 
-Questions, comments, bug reports, and pull requests are all welcome.  Submit them at [the project on GitHub](https://github.com/Obvious/sculpt/).  If you haven't contributed to a [Medium](http://github.com/Obvious/) project before please head over to the [Open Source Project](https://github.com/Obvious/open-source#note-to-external-contributors) and fill out an contributor license agreement (it should be pretty painless).
+Questions, comments, bug reports, and pull requests are all welcome.  Submit them at [the project on GitHub](https://github.com/Medium/sculpt/).  If you haven't contributed to a [Medium](http://github.com/Medium/) project before please head over to the [Open Source Project](https://github.com/Medium/open-source#note-to-external-contributors) and fill out an contributor license agreement (it should be pretty painless).
 
 Bug reports that include steps-to-reproduce (including code) are the best. Even better, make them in the form of pull requests.
 
@@ -8,7 +8,7 @@ Bug reports that include steps-to-reproduce (including code) are the best. Even 
 
 ### Pull requests
 
-[Fork](https://github.com/Obvious/sculpt/fork) the project on GitHub and make a pull request from your feature branch against the upstream master branch. Consider rebasing your branch onto the latest master before sending a pull request to make sure there are no merge conflicts, failing tests, or other regressions.
+[Fork](https://github.com/Medium/sculpt/fork) the project on GitHub and make a pull request from your feature branch against the upstream master branch. Consider rebasing your branch onto the latest master before sending a pull request to make sure there are no merge conflicts, failing tests, or other regressions.
 
 ### Code style
 
@@ -30,12 +30,12 @@ Use examples and in-line documentation when they're helpful. Avoid comments like
 
 ### Readme
 
-If you introduce changes or new features that will affect users, consider updating or adding the relevant section of the [readme](https://github.com/Obvious/sculpt/blob/master/README.md).
+If you introduce changes or new features that will affect users, consider updating or adding the relevant section of the [readme](https://github.com/Medium/sculpt/blob/master/README.md).
 
 ## Tests
 
 ### Unit tests
 
-Tests use [Mocha](http://visionmedia.github.io/mocha/) and can be run with `npm test`. Tests will automatically be run on [Travis CI](https://travis-ci.org/Obvious/sculpt) for new pull requests, and pull requests will only be merged if the tests pass.
+Tests use [Mocha](http://visionmedia.github.io/mocha/) and can be run with `npm test`. Tests will automatically be run on [Travis CI](https://travis-ci.org/Medium/sculpt) for new pull requests, and pull requests will only be merged if the tests pass.
 
 New features and bug fixes should have new unit tests. Don't be afraid to make the tests fun to read, we will all be fine without another example of asserting "foobar" or "example data". I like Vampire Weekend lyrics. Be creative.

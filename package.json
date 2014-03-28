@@ -20,13 +20,13 @@
   },
   "author": "Evan Solomon <evan.solomon@medium.com>",
   "license": "MIT",
-  "homepage": "https://github.com/Obvious/sculpt",
+  "homepage": "https://github.com/Medium/sculpt",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Obvious/sculpt.git"
+    "url": "git://github.com/Medium/sculpt.git"
   },
   "bugs": {
-    "url": "https://github.com/Obvious/sculpt/issues"
+    "url": "https://github.com/Medium/sculpt/issues"
   },
   "keywords": [
     "stream",
