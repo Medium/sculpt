@@ -1,7 +1,7 @@
 // Copyright 2014. A Medium Corporation
 
 /**
- * @file A simple transform stream that just collects incoming objects.
+ * @fileoverview A simple transform stream that just collects incoming objects.
  */
 var sculpt = require('../../index')
 

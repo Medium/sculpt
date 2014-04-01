@@ -1,7 +1,7 @@
 // Copyright 2014. A Medium Corporation
 
 /**
- * @file Export all of the public modules.
+ * @fileoverview Export all of the public modules.
  */
 var fs = require('fs')
 var path = require('path')
