@@ -100,4 +100,21 @@ describe('Map', function () {
     stream.write('Why would you lie about anything at all?')
     stream.end()
   })
+
+  it('Should not throw on pushing data when async streams have an error', function (done) {
+    var stream = map(function (data, callback) {
+      callback(new Error('This stream never works'))
+    }).async().multi()
+
+    stream.on('error', function (err) {
+      assert.ok(err)
+      done()
+    })
+
+    stream.on('end', function () {
+      done(new Error('This stream should error before it ends'))
+    })
+
+    stream.end('I see a Mansard roof through the trees')
+  })
 })
