@@ -1,6 +1,6 @@
 {
   "name": "sculpt",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Generate Node 0.10-friendly transform streams to manipulate other streams.",
   "main": "index.js",
   "engines": {
