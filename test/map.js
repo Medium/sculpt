@@ -117,4 +117,26 @@ describe('Map', function () {
 
     stream.end('I see a Mansard roof through the trees')
   })
+
+  it('Should be able to ignore undefined values', function (done) {
+    var stream = map(function (num) {
+      return num % 2 ? num : undefined
+    }).ignoreUndefined()
+    var collector = collect()
+
+    stream.on('error', done)
+    collector.on('error', done)
+    stream.pipe(collector)
+
+    stream.write(1)
+    stream.write(2)
+    stream.write(3)
+    stream.write(4)
+    stream.end()
+
+    collector.on('end', function () {
+      assert.deepEqual([1, 3], collector.getObjects())
+      done()
+    })
+  })
 })

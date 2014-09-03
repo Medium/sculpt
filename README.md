@@ -95,6 +95,25 @@ stream.write('hello')
 // 1hello
 ```
 
+Map streams can be set to ignore values that are `undefined`. Ordinarily Node.js treats `null`-ish
+values (including `undefined`) as signaling the end of a stream. In some cases it's useful to be
+able to avoid pushing data for some inputs without having a separate stream to filter the data — for
+example, cases where deciding whether you want to push data requires expensive computation. In
+those cases, you can set the stream to ignore `undefined` values.
+
+```javascript
+var stream = sculpt.map(function (chunk) {
+  if (chunk === 'hello') return
+  return chunk
+}).ignoreUndefined()
+
+stream.pipe(process.stdout)
+stream.write('hello')
+strea.write('world')
+
+// world
+```
+
 
 ### Filter
 
