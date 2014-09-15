@@ -48,7 +48,7 @@ describe('Bytes', function () {
     streams.collector.on('end', function () {
       var output = streams.collector.getObjects()
       output.map(function (chunk) {
-        assert.ok(chunk instanceof Buffer)
+        assert.ok(Buffer.isBuffer(chunk))
       })
       done()
     })
