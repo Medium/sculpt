@@ -3,11 +3,16 @@
 /**
  * @fileoverview Export all of the public modules.
  */
-var fs = require('fs')
-var path = require('path')
-
-var libPath = path.join(__dirname, 'lib')
-fs.readdirSync(libPath).forEach(function (lib) {
-  var name = lib.replace('.js', '')
-  exports[name] = require(path.join(libPath, name))
-})
+module.exports = {
+  append     : require('./lib/append'),
+  byteLength : require('./lib/byteLength'),
+  filter     : require('./lib/filter'),
+  fork       : require('./lib/fork'),
+  invoke     : require('./lib/invoke'),
+  join       : require('./lib/join'),
+  map        : require('./lib/map'),
+  prepend    : require('./lib/prepend'),
+  replace    : require('./lib/replace'),
+  split      : require('./lib/split'),
+  tap        : require('./lib/tap')
+};
