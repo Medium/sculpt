@@ -29,9 +29,9 @@ describe('Map', function () {
   it('Should apply an async mapper', function (done) {
     var collector = collect()
     var stream = map(function (line, cb) {
-      setImmediate(function () {
+      setTimeout(function () {
         cb(null, line.toUpperCase())
-      })
+      }, 1)
     }).async()
 
     stream.pipe(collector)
@@ -78,10 +78,10 @@ describe('Map', function () {
     var collector = collect()
     var i = 0
     var stream = map(function (line, cb) {
-      setImmediate(function () {
+      setTimeout(function () {
         i++
         cb(null, [i, line])
-      })
+      }, 1)
     }).async().multi()
 
     stream.pipe(collector)

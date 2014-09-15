@@ -4,9 +4,6 @@
  * @fileoverview Export all of the public modules.
  */
 
-// Browser-side shim, falls back to node default, extends the global.
-require('setImmediate');
-
 module.exports = {
   append     : require('./lib/append'),
   byteLength : require('./lib/byteLength'),

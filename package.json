@@ -34,8 +34,5 @@
     "streams2",
     "transform",
     "objectMode"
-  ],
-  "dependencies": {
-    "setimmediate": "^1.0.2"
-  }
+  ]
 }
