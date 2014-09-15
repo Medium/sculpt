@@ -78,7 +78,7 @@ describe('Bytes', function () {
 
   it('Should split on byte length, not character count', function (done) {
     var streams = makeStreams(1)
-    var multiByteChar = '\uDFFF'
+    var multiByteChar = "0xDFFF"
     var byteLength = Buffer.byteLength(multiByteChar)
 
     streams.collector.on('end', function () {
