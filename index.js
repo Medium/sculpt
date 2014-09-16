@@ -16,4 +16,4 @@ module.exports = {
   replace    : require('./lib/replace'),
   split      : require('./lib/split'),
   tap        : require('./lib/tap')
-};
+}
