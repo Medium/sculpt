@@ -27,9 +27,9 @@ describe('Filter', function () {
   it('Should allow objects that pass async', function (done) {
     var collector = collect()
     var stream = filter(function (chunk, cb) {
-      setImmediate(function () {
+      setTimeout(function () {
         cb(null, noJersey(chunk))
-      })
+      }, 1)
     }).async()
 
     stream.pipe(collector)
@@ -59,9 +59,9 @@ describe('Filter', function () {
   it('Should block objects that do not pass async', function (done) {
     var collector = collect()
     var stream = filter(function (chunk, cb) {
-      setImmediate(function () {
+      setTimeout(function () {
         cb(null, noJersey(chunk))
-      })
+      }, 1)
     }).async()
 
     stream.pipe(collector)

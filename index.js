@@ -3,6 +3,7 @@
 /**
  * @fileoverview Export all of the public modules.
  */
+
 module.exports = {
   append     : require('./lib/append'),
   byteLength : require('./lib/byteLength'),
