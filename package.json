@@ -12,12 +12,14 @@
     "jshint": "jshint lib/* test/* index.js",
     "jscs": "jscs lib/* test/* index.js",
     "mocha": "mocha --reporter spec --check-leaks",
-    "test": "npm run jshint && npm run jscs && npm run ensure-tests && npm run mocha"
+    "zuul": "bin/zuul-tests",
+    "test": "npm run jshint && npm run jscs && npm run ensure-tests && npm run mocha && npm run zuul"
   },
   "devDependencies": {
-    "mocha": "~1.17.1",
+    "jscs": "~1.3.0",
     "jshint": "~2.4.4",
-    "jscs": "~1.3.0"
+    "mocha": "~1.17.1",
+    "zuul": "^1.11.0"
   },
   "author": "Evan Solomon <evan.solomon@medium.com>",
   "license": "MIT",

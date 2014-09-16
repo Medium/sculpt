@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [ -z "$TRAVIS" ]; then
+    echo "Zuul tests only run on Travis CI"
+    echo "To run the tests manually, try: zuul --local test/*.js"
+    echo "Skipping zuul tests..."
+    exit 0
+fi
+
+./node_modules/.bin/zuul -- test/*.js
