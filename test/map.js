@@ -139,4 +139,24 @@ describe('Map', function () {
       done()
     })
   })
+
+  it('Should flush', function (done) {
+    var stream = map(function (i) {
+      return i
+    }, function () {
+      return 'Finish'
+    })
+    var collector = collect()
+
+    stream.on('error', done)
+    collector.on('error', done)
+    stream.pipe(collector)
+
+    stream.end('Start')
+
+    collector.on('end', function () {
+      assert.deepEqual(['Start', 'Finish'], collector.getObjects())
+      done()
+    })
+  })
 })
