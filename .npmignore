@@ -1,0 +1,10 @@
+test/
+bin/
+
+.travis.yml
+.zuul.yml
+.jscsrc
+.jshintrc
+.gitignore
+CONTRIBUTING.md
+README.md
