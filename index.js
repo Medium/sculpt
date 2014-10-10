@@ -12,6 +12,7 @@ module.exports = {
   invoke     : require('./lib/invoke'),
   join       : require('./lib/join'),
   map        : require('./lib/map'),
+  pipe       : require('./lib/pipe'),
   prepend    : require('./lib/prepend'),
   replace    : require('./lib/replace'),
   split      : require('./lib/split'),
