@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+# Fail on first error and print each command
+set -ex
+
+# Make sure every lib module has a corresponding test
+npm run ensure-tests
+
+# Lint and style
+npm run jshint
+npm run jscs
+
+# Node tests
+npm run mocha
+
+# Browser tests
+npm run zuul

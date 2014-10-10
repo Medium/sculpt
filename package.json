@@ -13,7 +13,7 @@
     "jscs": "jscs lib/* test/* index.js",
     "mocha": "mocha --reporter spec --check-leaks",
     "zuul": "bin/zuul-tests",
-    "test": "npm run jshint && npm run jscs && npm run ensure-tests && npm run mocha && npm run zuul"
+    "test": "bin/test"
   },
   "devDependencies": {
     "jscs": "~1.3.0",
