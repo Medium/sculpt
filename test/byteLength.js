@@ -1,13 +1,11 @@
 // Copyright 2014. A Medium Corporation
 
-var assert = require('assert')
-var collect = require('./helpers/collect')
-var byteLength = require('../').byteLength
+var helpers = require('./helpers')
 
 function makeStreams(length) {
-  var collector = collect()
+  var collector = helpers.collect()
   collector.on('data', function () {})
-  var byteLengthStream = byteLength(length)
+  var byteLengthStream = helpers.sculpt.byteLength(length)
   byteLengthStream.pipe(collector)
 
   return {
@@ -21,8 +19,8 @@ describe('Bytes', function () {
     var streams = makeStreams(10)
     streams.collector.on('end', function () {
       var output = streams.collector.getObjects()
-      assert.equal(1, output.length)
-      assert.equal('Ya Hey', output[0])
+      helpers.assert.equal(1, output.length)
+      helpers.assert.equal('Ya Hey', output[0])
       done()
     })
 
@@ -35,8 +33,8 @@ describe('Bytes', function () {
 
     streams.collector.on('end', function () {
       var output = streams.collector.getObjects()
-      assert.equal(1, output.length)
-      assert.equal(input, output[0])
+      helpers.assert.equal(1, output.length)
+      helpers.assert.equal(input, output[0])
       done()
     })
 
@@ -48,7 +46,7 @@ describe('Bytes', function () {
     streams.collector.on('end', function () {
       var output = streams.collector.getObjects()
       output.map(function (chunk) {
-        assert.ok(Buffer.isBuffer(chunk))
+        helpers.assert.ok(Buffer.isBuffer(chunk))
       })
       done()
     })
@@ -61,11 +59,11 @@ describe('Bytes', function () {
     streams.collector.on('end', function () {
       var output = streams.collector.getObjects()
       for (var i = 0; i < output.length - 1; i++) {
-        assert.equal(output[i].length, 5)
+        helpers.assert.equal(output[i].length, 5)
       }
 
       // Last chunk can be any length
-      assert.ok(output.pop().length <= 5)
+      helpers.assert.ok(output.pop().length <= 5)
       done()
     })
 
@@ -83,7 +81,7 @@ describe('Bytes', function () {
 
     streams.collector.on('end', function () {
       var chunks = streams.collector.getObjects()
-      assert.equal(chunks.length, byteLength)
+      helpers.assert.equal(chunks.length, byteLength)
       done()
     })
 

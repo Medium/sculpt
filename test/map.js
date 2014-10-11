@@ -1,20 +1,18 @@
 // Copyright 2014. A Medium Corporation
 
-var assert = require('assert')
-var collect = require('./helpers/collect')
-var map = require('../').map
+var helpers = require('./helpers')
 
 describe('Map', function () {
   it('Should apply a mapper', function (done) {
-    var collector = collect()
-    var stream = map(function (line) {
+    var collector = helpers.collect()
+    var stream = helpers.sculpt.map(function (line) {
       return line.toUpperCase()
     })
 
     stream.pipe(collector)
     stream.on('error', done)
     collector.on('end', function () {
-      assert.deepEqual([
+      helpers.assert.deepEqual([
         'WHY WOULD YOU LIE ABOUT HOW MUCH COAL YOU HAVE?',
         'WHY WOULD YOU LIE ABOUT ANYTHING AT ALL?'
       ], collector.getObjects())
@@ -27,8 +25,8 @@ describe('Map', function () {
   })
 
   it('Should apply an async mapper', function (done) {
-    var collector = collect()
-    var stream = map(function (line, cb) {
+    var collector = helpers.collect()
+    var stream = helpers.sculpt.map(function (line, cb) {
       setTimeout(function () {
         cb(null, line.toUpperCase())
       }, 1)
@@ -37,7 +35,7 @@ describe('Map', function () {
     stream.pipe(collector)
     stream.on('error', done)
     collector.on('end', function () {
-      assert.deepEqual([
+      helpers.assert.deepEqual([
         'WHY WOULD YOU LIE ABOUT HOW MUCH COAL YOU HAVE?',
         'WHY WOULD YOU LIE ABOUT ANYTHING AT ALL?'
       ], collector.getObjects())
@@ -50,9 +48,9 @@ describe('Map', function () {
   })
 
   it('Should apply a multi mapper', function (done) {
-    var collector = collect()
+    var collector = helpers.collect()
     var i = 0
-    var stream = map(function (line) {
+    var stream = helpers.sculpt.map(function (line) {
       i++
       return [i, line]
     }).multi()
@@ -60,7 +58,7 @@ describe('Map', function () {
     stream.pipe(collector)
     stream.on('error', done)
     collector.on('end', function () {
-      assert.deepEqual([
+      helpers.assert.deepEqual([
         1,
         'Why would you lie about how much coal you have?',
         2,
@@ -75,9 +73,9 @@ describe('Map', function () {
   })
 
   it('Should apply an async multi mapper', function (done) {
-    var collector = collect()
+    var collector = helpers.collect()
     var i = 0
-    var stream = map(function (line, cb) {
+    var stream = helpers.sculpt.map(function (line, cb) {
       setTimeout(function () {
         i++
         cb(null, [i, line])
@@ -87,7 +85,7 @@ describe('Map', function () {
     stream.pipe(collector)
     stream.on('error', done)
     collector.on('end', function () {
-      assert.deepEqual([
+      helpers.assert.deepEqual([
         1,
         'Why would you lie about how much coal you have?',
         2,
@@ -102,12 +100,12 @@ describe('Map', function () {
   })
 
   it('Should not throw on pushing data when async streams have an error', function (done) {
-    var stream = map(function (data, callback) {
+    var stream = helpers.sculpt.map(function (data, callback) {
       callback(new Error('This stream never works'))
     }).async().multi()
 
     stream.on('error', function (err) {
-      assert.ok(err)
+      helpers.assert.ok(err)
       done()
     })
 
@@ -119,10 +117,10 @@ describe('Map', function () {
   })
 
   it('Should be able to ignore undefined values', function (done) {
-    var stream = map(function (num) {
+    var stream = helpers.sculpt.map(function (num) {
       return num % 2 ? num : undefined
     }).ignoreUndefined()
-    var collector = collect()
+    var collector = helpers.collect()
 
     stream.on('error', done)
     collector.on('error', done)
@@ -135,18 +133,18 @@ describe('Map', function () {
     stream.end()
 
     collector.on('end', function () {
-      assert.deepEqual([1, 3], collector.getObjects())
+      helpers.assert.deepEqual([1, 3], collector.getObjects())
       done()
     })
   })
 
   it('Should flush', function (done) {
-    var stream = map(function (i) {
+    var stream = helpers.sculpt.map(function (i) {
       return i
     }, function () {
       return 'Finish'
     })
-    var collector = collect()
+    var collector = helpers.collect()
 
     stream.on('error', done)
     collector.on('error', done)
@@ -155,7 +153,7 @@ describe('Map', function () {
     stream.end('Start')
 
     collector.on('end', function () {
-      assert.deepEqual(['Start', 'Finish'], collector.getObjects())
+      helpers.assert.deepEqual(['Start', 'Finish'], collector.getObjects())
       done()
     })
   })

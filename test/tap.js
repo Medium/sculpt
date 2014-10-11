@@ -1,14 +1,12 @@
 // Copyright 2014. A Medium Corporation
 
-var assert = require('assert')
-var collect = require('./helpers/collect')
-var tap = require('../').tap
+var helpers = require('./helpers')
 
 describe('Tap', function () {
   it('Should call a side effect function without changing data', function (done) {
-    var collector = collect()
+    var collector = helpers.collect()
     var hannahs = 0
-    var stream = tap(function (line) {
+    var stream = helpers.sculpt.tap(function (line) {
       if (line.indexOf('Hannah') > -1) {
         hannahs++
       }
@@ -17,7 +15,7 @@ describe('Tap', function () {
     stream.pipe(collector)
     stream.on('error', done)
     collector.on('end', function () {
-      assert.equal(hannahs, 2)
+      helpers.assert.equal(hannahs, 2)
       done()
     })
 

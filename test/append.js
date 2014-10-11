@@ -1,18 +1,16 @@
 // Copyright 2014. A Medium Corporation
 
-var assert = require('assert')
-var collect = require('./helpers/collect')
-var append = require('../').append
+var helpers = require('./helpers')
 
 describe('Append', function () {
   it('Should add a suffix', function (done) {
-    var collector = collect()
-    var stream = append('?')
+    var collector = helpers.collect()
+    var stream = helpers.sculpt.append('?')
 
     stream.pipe(collector)
     stream.on('error', done)
     collector.on('end', function () {
-      assert.deepEqual([
+      helpers.assert.deepEqual([
         'Don\'t you know that it\'s insane?',
         'Don\'t you want to get out of Cap Code, out of Cape Code tonight?'
       ], collector.getObjects())

@@ -1,18 +1,16 @@
 // Copyright 2014. A Medium Corporation
 
-var assert = require('assert')
-var collect = require('./helpers/collect')
-var join = require('../').join
+var helpers = require('./helpers')
 
 describe('Join', function () {
   it('Should join with a separator', function (done) {
-    var collector = collect()
-    var stream = join(' about ')
+    var collector = helpers.collect()
+    var stream = helpers.sculpt.join(' about ')
 
     stream.pipe(collector)
     stream.on('error', done)
     collector.on('end', function () {
-      assert.deepEqual([
+      helpers.assert.deepEqual([
         'Why would you lie about how much coal you have?',
         'Why would you lie about something dumb like that?'
       ], collector.getObjects())

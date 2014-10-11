@@ -1,18 +1,16 @@
 // Copyright 2014. A Medium Corporation
 
-var assert = require('assert')
-var collect = require('./helpers/collect')
-var invoke = require('../').invoke
+var helpers = require('./helpers')
 
 describe('Method', function () {
   it('Should call a method', function (done) {
-    var collector = collect()
-    var stream = invoke('toString')
+    var collector = helpers.collect()
+    var stream = helpers.sculpt.invoke('toString')
 
     stream.pipe(collector)
     stream.on('error', done)
     collector.on('end', function () {
-      assert.strictEqual(collector.getObjects().shift(), '11')
+      helpers.assert.strictEqual(collector.getObjects().shift(), '11')
       done()
     })
 
@@ -20,13 +18,13 @@ describe('Method', function () {
   })
 
   it('Should emit an error if the method does not exist', function (done) {
-    var collector = collect()
-    var stream = invoke('fake')
+    var collector = helpers.collect()
+    var stream = helpers.sculpt.invoke('fake')
 
     stream.pipe(collector)
     stream.on('error', function (err) {
-      assert.ok(err)
-      assert.ok(err.message.indexOf('has no method'))
+      helpers.assert.ok(err)
+      helpers.assert.ok(err.message.indexOf('has no method'))
       done()
     })
 
@@ -34,13 +32,13 @@ describe('Method', function () {
   })
 
   it('Should pass arbitrary arguments to the method', function (done) {
-    var collector = collect()
-    var stream = invoke('slice', 1)
+    var collector = helpers.collect()
+    var stream = helpers.sculpt.invoke('slice', 1)
 
     stream.pipe(collector)
     stream.on('error', done)
     collector.on('end', function () {
-      assert.deepEqual(collector.getObjects().shift(), [
+      helpers.assert.deepEqual(collector.getObjects().shift(), [
         'all',
         'apartments',
         'are',

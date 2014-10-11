@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-if [ -z "$TRAVIS" ]; then
-    echo "Zuul tests only run on Travis CI"
-    echo "To run the tests manually, try: zuul --local test/*.js"
-    echo "Skipping zuul tests..."
-    exit 0
-fi
+# Run in phantomjs unless on CI
 
-./node_modules/.bin/zuul -- test/*.js
+./bin/is-ci
+if [[ "$?" -eq "0" ]]; then
+  echo "On CI, running browser tests on SauceLabs"
+  ./node_modules/.bin/zuul -- test/*.js
+else
+  echo "Running browser tests locally with phantomjs"
+  ./node_modules/.bin/zuul --phantom -- test/*.js
+fi

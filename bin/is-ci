@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+if (process.env.TRAVIS === 'true' && process.env.CI === 'true') {
+  process.exit(0)
+} else {
+  process.exit(1)
+}

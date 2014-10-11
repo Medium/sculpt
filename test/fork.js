@@ -1,20 +1,18 @@
 // Copyright 2014. A Medium Corporation
 
-var assert = require('assert')
-var collect = require('./helpers/collect')
-var fork = require('../').fork
+var helpers = require('./helpers')
 
 describe('Fork', function () {
   it('Should fork to another writable stream', function (done) {
-    var collector = collect()
-    var forkedWritable = collect()
-    var stream = fork(forkedWritable)
+    var collector = helpers.collect()
+    var forkedWritable = helpers.collect()
+    var stream = helpers.sculpt.fork(forkedWritable)
 
     stream.pipe(collector)
     stream.on('error', done)
     collector.on('end', function () {
-      assert.deepEqual(['The Holy Roman Empire', 'roots for you'], forkedWritable.getObjects())
-      assert.deepEqual(['The Holy Roman Empire', 'roots for you'], collector.getObjects())
+      helpers.assert.deepEqual(['The Holy Roman Empire', 'roots for you'], forkedWritable.getObjects())
+      helpers.assert.deepEqual(['The Holy Roman Empire', 'roots for you'], collector.getObjects())
       done()
     })
 
@@ -24,9 +22,9 @@ describe('Fork', function () {
   })
 
   it('Should bubble errors', function (done) {
-    var stream = fork(collect())
+    var stream = helpers.sculpt.fork(helpers.collect())
     stream.on('error', function (err) {
-      assert.equal(err.message, 'write after end')
+      helpers.assert.equal(err.message, 'write after end')
       done()
     })
 
