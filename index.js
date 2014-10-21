@@ -7,6 +7,7 @@
 module.exports = {
   append     : require('./lib/append'),
   byteLength : require('./lib/byteLength'),
+  cluster    : require('./lib/cluster'),
   filter     : require('./lib/filter'),
   fork       : require('./lib/fork'),
   invoke     : require('./lib/invoke'),
