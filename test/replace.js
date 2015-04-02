@@ -47,4 +47,32 @@ describe('Replace', function () {
 
     stream.end('Baby baby baby baby ride on')
   })
+
+  it('Should replace globally if specfied', function (done) {
+    var collector = helpers.collect()
+    var stream = helpers.sculpt.replace('yes', 'no', 'g')
+
+    stream.pipe(collector)
+    stream.on('error', done)
+    collector.on('end', function () {
+      helpers.assert.equal('no no', collector.getObjects().pop())
+      done()
+    })
+
+    stream.end('yes yes')
+  })
+
+  it('Should not build a regex and should ignore flags when passed a regex', function (done) {
+    var collector = helpers.collect()
+    var stream = helpers.sculpt.replace(/yes/, 'no', 'g')
+
+    stream.pipe(collector)
+    stream.on('error', done)
+    collector.on('end', function () {
+      helpers.assert.equal('no yes', collector.getObjects().pop())
+      done()
+    })
+
+    stream.end('yes yes')
+  })
 })
