@@ -191,6 +191,7 @@ stream.write('world')
 
 * find: String or regex to search for in each chunk.
 * replace: String or function to replace the found value with.
+* flags: Optional string of flags. Cannot be used when find is a regex.
 
 ```javascript
 var stream = sculpt.replace('!', '?')
